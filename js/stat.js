@@ -9,7 +9,7 @@ window.renderStatistics = function (ctx, names, times) {
   var textInterval = 5;
   var textHeight = 16;
 
-  function drawCloud() {
+  var drawCloud = function () {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     ctx.fillRect(110, 20, 420, 270);
     ctx.fillStyle = 'white';
@@ -19,17 +19,17 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.font = '16px PT Mono';
     ctx.fillText('Ура вы победили!', 120, 40);
     ctx.fillText('Список результатов:', 120, 60);
-  }
+  };
 
   drawCloud();
 
-  function getMaxTime() {
+  var getMaxTime = function () {
     for (var i = 0; i < times.length; i++) {
       if (maxTime < times[i]) {
         maxTime = times[i];
       }
     }
-  }
+  };
 
   getMaxTime();
 
