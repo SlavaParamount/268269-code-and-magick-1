@@ -17,8 +17,8 @@ var showElement = function (element) {
 
 showElement(setupBlock);
 
-var generateRandom = function (max_amount) {
-  return Math.floor(Math.random() * max_amount);
+var generateRandom = function (maxAmount) {
+  return Math.floor(Math.random() * maxAmount);
 };
 
 for (var i = 0; i < 4; i++) {
@@ -37,7 +37,7 @@ var generateWizardElement = function (wizard) {
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
   return wizardElement;
-}
+};
 
 var fragment = document.createDocumentFragment();
 
