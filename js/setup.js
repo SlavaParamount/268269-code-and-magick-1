@@ -7,7 +7,9 @@ var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var wizards = [];
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-var similarListElement = document.querySelector('.setup-similar-list');
+var setupSimilarList = document.querySelector('.setup-similar-list');
+var NUMBER_OF_WIZARDS = 4;
+var wizardsContainer = document.createDocumentFragment();
 
 var showElement = function (element) {
   if (element.classList.contains(HIDDEN_CLASS)) {
@@ -15,21 +17,9 @@ var showElement = function (element) {
   }
 };
 
-showElement(setupBlock);
-
 var generateRandom = function (maxAmount) {
   return Math.floor(Math.random() * maxAmount);
 };
-
-for (var i = 0; i < 4; i++) {
-  wizards[i] = {
-    name: WIZARD_NAMES[generateRandom(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[generateRandom(WIZARD_SURNAMES.length)],
-    coatColor: COAT_COLORS[generateRandom(COAT_COLORS.length)],
-    eyesColor: EYES_COLORS[generateRandom(EYES_COLORS.length)]
-  };
-}
-
-showElement(document.querySelector('.setup-similar'));
 
 var generateWizardElement = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -39,10 +29,16 @@ var generateWizardElement = function (wizard) {
   return wizardElement;
 };
 
-var fragment = document.createDocumentFragment();
+showElement(setupBlock);
+showElement(document.querySelector('.setup-similar'));
 
-for (i = 0; i < wizards.length; i++) {
-  fragment.appendChild(generateWizardElement(wizards[i]));
+for (var i = 0; i < NUMBER_OF_WIZARDS; i++) {
+  wizards[i] = {
+    name: WIZARD_NAMES[generateRandom(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[generateRandom(WIZARD_SURNAMES.length)],
+    coatColor: COAT_COLORS[generateRandom(COAT_COLORS.length)],
+    eyesColor: EYES_COLORS[generateRandom(EYES_COLORS.length)]
+  };
+  wizardsContainer.appendChild(generateWizardElement(wizards[i]));
 }
 
-similarListElement.appendChild(fragment);
+setupSimilarList.appendChild(wizardsContainer);
